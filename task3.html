@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>List App</h1>
+    <input type="text">
+    <button>ajouter dans la liste </button>
+    <ul></ul>
+    <script>
+     let liste = document.querySelector("ul")
+     let input = document.querySelector("input")
+     let button = document.querySelector("button")
+     button.addEventListener("click",addTodo)
+     function addTodo() {
+        if (isInputEmpty()) {
+          alert("Input empty, please type something !");
+          return;
+        }
+        let li = document.createElement("li");
+        let span = document.createElement("span");
+        span.innerHTML = input.value;
+        li.appendChild(span);
+        liste.appendChild(li);
+        document.onkeydown = function () {
+        button.innerText="ajouter "+ input.value +" dans la liste ";
+       }
+       input.value="" ;
+    }
+     function isInputEmpty() {
+        if (input.value == "") {
+          return true;
+        }
+        return false;
+      }
+      input.addEventListener("keypress", function (e) {
+        if (e.key == "Enter") {
+          addTodo();
+        }
+      });
+    </script>
+</body>
+</html>
